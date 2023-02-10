@@ -1,0 +1,17 @@
+port: 3333
+services:
+  - name: test
+    directory: ./testdir
+    token: testtoken
+    before_script:
+      - echo "hello"
+      - echo "who are you"
+    after_script:
+      - echo "byebye"
+    notify_tpls:
+      - name: default
+        provider: feishu
+        url: https://open.feishu.cn/open-apis/bot/v2/hook/xxxx
+        msg_tpl: |
+          commit id： ${COMMIT_ID}
+          commit msg: ${COMMIT_MSG} hot update 1
